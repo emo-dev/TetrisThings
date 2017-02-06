@@ -7,13 +7,24 @@ var Tetris = (function(MainTetris) {
 	//===========FUNCTIONS=============//
 	//=================================//
 
+	let grabMove = {
+		me: square,
+		move: function(down) {Tetris.moveDown(down)},
+		string: "square",
+		color: "red",
+		position: 0
+	};
+
+	MainTetris.whoseMove = () => grabMove;
+
 	MainTetris.playGame = () => {
+	
 		Tetris.draw();
 		if (moveCounter === 0) {
 				Tetris.createGamePiece();
 		}
 		myTimeout = setTimeout(function(){
-			Tetris.checkIfClearDown();
+			Tetris.checkIfClear();
 			if (collisionDown){
 				Tetris.turn2sTo1s();
 				Tetris.checkIfRowIsFull();
@@ -24,8 +35,8 @@ var Tetris = (function(MainTetris) {
 				return;
 			};
 			moveCounter++;
-			Tetris.moveGBDown();
-			Tetris.moveDown();
+			Tetris.moveGB("down");
+			Tetris.move("down");
 			Tetris.clearToMove();
 			Tetris.playGame();
 
@@ -35,11 +46,11 @@ var Tetris = (function(MainTetris) {
 	MainTetris.startOver = () => {
 		let randomNum = Math.floor((Math.random() * 49) + 1);
 		let updateWhoseMove = (me, move, string, color, position) => {
-			whoseMove.me = me;
-			whoseMove.move = move;
-			whoseMove.string = string;
-			whoseMove.color = color;
-			whoseMove.position = position;
+			Tetris.whoseMove().me = me;
+			Tetris.whoseMove().move = move;
+			Tetris.whoseMove().string = string;
+			Tetris.whoseMove().color = color;
+			Tetris.whoseMove().position = position;
 		};
 		
 		if (randomNum < 7) {
@@ -62,9 +73,9 @@ var Tetris = (function(MainTetris) {
 	};
 
 	MainTetris.draw = () => {
-		ctx.fillStyle = whoseMove.color;  
+		ctx.fillStyle = Tetris.whoseMove().color;  
 		lastLetter = [];
-		potato = whoseMove.me
+		var potato = Tetris.whoseMove().me
 		for (var i = 0; i < potato.length; i++) {
 		    ctx.fillRect(potato[i].x, potato[i].y, w, h);
 		    var potatoBox = {};
@@ -85,38 +96,36 @@ var Tetris = (function(MainTetris) {
 	};
 
 	MainTetris.createGamePiece = () => {
-		switch (whoseMove.string) {
+		switch (Tetris.whoseMove().string) {
 			case "square":
-				gameboard[0] = originals.gameboardSquare[0];
-				gameboard[1] = originals.gameboardSquare[1];
+				gameboard[0] = Tetris.grabJson().gameboardSquare[0];
+				gameboard[1] = Tetris.grabJson().gameboardSquare[1];
 				break;
 			case "L": 
-				gameboard[0] = originals.gameboardL[0];
-				gameboard[1] = originals.gameboardL[1];
+				gameboard[0] = Tetris.grabJson().gameboardL[0];
+				gameboard[1] = Tetris.grabJson().gameboardL[1];
 				break;
 			case "J": 
-				gameboard[0] = originals.gameboardJ[0];
-				gameboard[1] = originals.gameboardJ[1];
+				gameboard[0] = Tetris.grabJson().gameboardJ[0];
+				gameboard[1] = Tetris.grabJson().gameboardJ[1];
 				break;
 			case "Z": 
-				gameboard[0] = originals.gameboardZ[0];
-				gameboard[1] = originals.gameboardZ[1];
+				gameboard[0] = Tetris.grabJson().gameboardZ[0];
+				gameboard[1] = Tetris.grabJson().gameboardZ[1];
 				break;
 			case "S": 
-				gameboard[0] = originals.gameboardZ[0];
-				gameboard[1] = originals.gameboardZ[1];
+				gameboard[0] = Tetris.grabJson().gameboardZ[0];
+				gameboard[1] = Tetris.grabJson().gameboardZ[1];
 				break;
 			case "I": 
-				gameboard[0] = originals.gameboardI[0];
-				gameboard[1] = originals.gameboardI[1];
+				gameboard[0] = Tetris.grabJson().gameboardI[0];
+				gameboard[1] = Tetris.grabJson().gameboardI[1];
 				break;
 			case "T":
-				gameboard[0] = originals.gameboardT[0];
-				gameboard[1] = originals.gameboardT[1];
+				gameboard[0] = Tetris.grabJson().gameboardT[0];
+				gameboard[1] = Tetris.grabJson().gameboardT[1];
 				break;
-			}
-			
-		}
+		}	
 	};
 
 	return MainTetris;

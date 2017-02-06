@@ -15,19 +15,24 @@ var Tetris = (function(Collision) {
 	};
 
 	Collision.checkIfClear = () => {
-		let down = gameboard[yCoord + 1][xCoord];
-		let right = gameboard[yCoord][xCoord + 1];
-		let left = gameboard[yCoord][xCoord - 1];
-
+		debugger
 		for (var i = 0; i < 4; i++) {
-			var xCoord = whoseMove.me[i].x;
-			var yCoord = whoseMove.me[i].y;
+			var xCoord = Tetris.whoseMove().me[i].x;
+			var yCoord = Tetris.whoseMove().me[i].y;
+
 		    xCoord = (xCoord/20) + 1;
 		    yCoord = (yCoord/20);
+
+			let down = gameboard[yCoord + 1][xCoord];
+			let right = gameboard[yCoord][xCoord + 1];
+			let left = gameboard[yCoord][xCoord - 1];
 		    
-		    if (down === 1 || right === 1 || left === 1) {
+		    if (down === 1) {
 		    	collisionDown = true;
-		    	return;
+		    } else if (right === 1) {
+		    	collisionDown = true;
+		    } else if (left === 1) {
+		    	collisionDown = true;
 		    } else {
 		    	collisionDown = false;
 		    }

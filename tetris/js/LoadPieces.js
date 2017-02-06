@@ -25,7 +25,7 @@ var Tetris = (function(LoadJson) {
 	};
 
 	//Function to retrieve stored Json data
-	LoadJson.grabJson = dataName => myData[dataName];
+	LoadJson.grabJson = () => myData;
 
 	return LoadJson;
 

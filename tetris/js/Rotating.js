@@ -10,7 +10,7 @@ var Tetris = (function(Rotating) {
 
 	Rotating.checkIfClearRotate = (direction) => {
 
-		var copy = whoseMove.me.slice(0);
+		var copy = Tetris.whoseMove().me.slice(0);
 
 		if (direction === "right") {
 			for (var i = 0; i < 4; i++) {
@@ -40,8 +40,8 @@ var Tetris = (function(Rotating) {
 
 	Rotating.rotateGBRight = () => {
 		for (var i = 3; i >= 0; i--) {
-			var xCoord = whoseMove.me[i].x
-			var yCoord = whoseMove.me[i].y
+			var xCoord = Tetris.whoseMove().me[i].x
+			var yCoord = Tetris.whoseMove().me[i].y
 		    xCoord = (xCoord/20) + 1;
 		    yCoord = (yCoord/20);
 		    
@@ -51,8 +51,8 @@ var Tetris = (function(Rotating) {
 
 	Rotating.rotateGBLeft = () => {
 		for (var i = 3; i >= 0; i--) {
-			var xCoord = whoseMove.me[i].x
-			var yCoord = whoseMove.me[i].y
+			var xCoord = Tetris.whoseMove().me[i].x
+			var yCoord = Tetris.whoseMove().me[i].y
 		    xCoord = (xCoord/20) + 1;
 		    yCoord = (yCoord/20);
 		    

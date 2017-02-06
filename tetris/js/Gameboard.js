@@ -9,8 +9,8 @@ var Tetris = (function(Gameboard) {
 
 	Gameboard.moveGB = (direction) => {
 		for (var i = 3; i >= 0; i--) {
-			var xCoord = whoseMove.me[i].x
-			var yCoord = whoseMove.me[i].y
+			var xCoord = Tetris.whoseMove().me[i].x
+			var yCoord = Tetris.whoseMove().me[i].y
 		    xCoord = (xCoord/20) + 1;
 		    yCoord = (yCoord/20);
 		    gameboard[yCoord][xCoord] = 0;

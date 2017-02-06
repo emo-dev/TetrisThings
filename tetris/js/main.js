@@ -26,13 +26,13 @@ var moveCounter = 0;
 
 var occupiedX = [];
 
-var whoseMove = {
-	me: square,
-	move: moveDown,
-	string: "square",
-	color: "red",
-	position: 0
-}
+// var whoseMove = {
+// 	me: square,
+// 	move: Tetris.moveDown("down"),
+// 	string: "square",
+// 	color: "red",
+// 	position: 0
+// };
 
 document.addEventListener("keyup", function(event){
 	if(event.which === 82) {
@@ -262,7 +262,7 @@ var Z = [
 	}
 ];
 
-startOver();
+// Tetris.startOver();
 
 
 
