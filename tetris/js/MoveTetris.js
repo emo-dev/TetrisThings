@@ -8,7 +8,7 @@ var Tetris = (function(MoveTetris) {
 	//=================================//
 
 	MoveTetris.move = (direction) => {
-		let batman = whoseMove.me;
+		let batman = Tetris.whoseMove().me;
 		for (var i = 0; i < batman.length; i++) {
 			switch (direction) {
 				case "right": 
@@ -25,7 +25,7 @@ var Tetris = (function(MoveTetris) {
 	};
 
 	MoveTetris.rotateRight = () => {
-		var potato = whoseMove.me;
+		var potato = Tetris.whoseMove().me;
 		for (var i = 0; i < potato.length; i++) {
 		    potato[i].x = Number(lastLetter[i].y + lastLetter[1].x - lastLetter[1].y);
 		    potato[i].y = Number(lastLetter[1].x + lastLetter[1].y - lastLetter[i].x);
@@ -33,7 +33,7 @@ var Tetris = (function(MoveTetris) {
 	};
 
 	MoveTetris.rotateLeft = () => {
-		var potato = whoseMove.me;
+		var potato = Tetris.whoseMove().me;
 		for (var i = 0; i < potato.length; i++) {
 		    potato[i].x = Number(lastLetter[1].x + lastLetter[1].y - lastLetter[i].y);
 			potato[i].y = Number(lastLetter[i].x + lastLetter[1].y - lastLetter[1].x);
